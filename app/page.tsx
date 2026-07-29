@@ -1,4 +1,14 @@
+"use client";
+
+import { useState } from "react";
+
 export default function Home() {
+  const [cart, setCart] = useState<number[]>([]);
+
+  const addToCart = (item: number) => {
+    setCart([...cart, item]);
+  };
+
   return (
     <main className="min-h-screen bg-white text-gray-900">
       <section className="flex flex-col items-center justify-center px-6 py-24 text-center">
@@ -16,12 +26,13 @@ export default function Home() {
         >
           Перейти в каталог
         </a>
+
+        <div className="mt-6 text-lg font-semibold">
+          🛒 Корзина: {cart.length} товаров
+        </div>
       </section>
 
-      <section
-        id="catalog"
-        className="mx-auto max-w-7xl px-6 pb-20"
-      >
+      <section id="catalog" className="mx-auto max-w-7xl px-6 pb-20">
         <h2 className="mb-8 text-3xl font-bold">
           Новые поступления
         </h2>
@@ -53,7 +64,10 @@ export default function Home() {
                   900 ₴
                 </p>
 
-                <button className="mt-4 w-full rounded-xl bg-teal-500 py-3 font-semibold text-white transition hover:bg-teal-600">
+                <button
+                  onClick={() => addToCart(item)}
+                  className="mt-4 w-full rounded-xl bg-teal-500 py-3 font-semibold text-white transition hover:bg-teal-600"
+                >
                   В корзину
                 </button>
               </div>
