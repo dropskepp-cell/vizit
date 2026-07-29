@@ -3,10 +3,17 @@
 import { useState } from "react";
 
 export default function Home() {
-  const [cart, setCart] = useState<number[]>([]);
+  const [cart, setCart] = useState<number[]>(() => {
+    if (typeof window !== "undefined") {
+      return JSON.parse(localStorage.getItem("cart") || "[]");
+    }
+    return [];
+  });
 
   const addToCart = (item: number) => {
-    setCart([...cart, item]);
+    const newCart = [...cart, item];
+    setCart(newCart);
+    localStorage.setItem("cart", JSON.stringify(newCart));
   };
 
   return (
@@ -26,12 +33,13 @@ export default function Home() {
         >
           Перейти в каталог
         </a>
+
         <a
-  href="/cart"
-  className="mt-6 text-lg font-semibold text-teal-500 hover:text-teal-600"
->
-  🛒 Корзина: {cart.length} товаров
-</a>
+          href="/cart"
+          className="mt-6 text-lg font-semibold text-teal-500 hover:text-teal-600"
+        >
+          🛒 Корзина: {cart.length} товаров
+        </a>
       </section>
 
       <section id="catalog" className="mx-auto max-w-7xl px-6 pb-20">
