@@ -36,9 +36,9 @@ export default function Home() {
 
         <a
           href="/cart"
-          className="mt-6 text-lg font-semibold text-teal-500 hover:text-teal-600"
+          className="mt-6 rounded-xl bg-teal-500 px-8 py-4 text-lg font-semibold text-white transition hover:bg-teal-600"
         >
-          🛒 Корзина: {cart.length} товаров
+          🛒 Корзина ({cart.length})
         </a>
       </section>
 
