@@ -26,10 +26,12 @@ export default function Home() {
         >
           Перейти в каталог
         </a>
-
-        <div className="mt-6 text-lg font-semibold">
-          🛒 Корзина: {cart.length} товаров
-        </div>
+        <a
+  href="/cart"
+  className="mt-6 text-lg font-semibold text-teal-500 hover:text-teal-600"
+>
+  🛒 Корзина: {cart.length} товаров
+</a>
       </section>
 
       <section id="catalog" className="mx-auto max-w-7xl px-6 pb-20">
