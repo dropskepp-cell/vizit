@@ -26,10 +26,12 @@ export default function RootLayout({
   return (
     <html
       lang="ru"
-      className="h-full antialiased">
+      className="h-full antialiased"
+    >
       <body className="min-h-full bg-white text-gray-900">
         <header className="sticky top-0 z-50 border-b bg-white">
           <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
+            
             <Link
               href="/"
               className="text-3xl font-extrabold tracking-wider text-teal-500"
@@ -38,14 +40,14 @@ export default function RootLayout({
             </Link>
 
             <nav className="flex items-center gap-6">
-              <a href="#catalog" className="hover:text-teal-500">
+              <Link
+                href="/#catalog"
+                className="hover:text-teal-500"
+              >
                 Каталог
-              </a>
-
-              <button className="rounded-xl bg-teal-500 px-5 py-2 text-white hover:bg-teal-600 transition">
-                🛒 Корзина
-              </button>
+              </Link>
             </nav>
+
           </div>
         </header>
 
