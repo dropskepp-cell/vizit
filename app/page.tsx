@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 
+import { products } from "../data/products";
 export default function Home() {
   const [cart, setCart] = useState<number[]>(() => {
     if (typeof window !== "undefined") {
@@ -48,9 +49,9 @@ export default function Home() {
         </h2>
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {[1, 2, 3, 4].map((item) => (
+    {products.map((item) => (
             <div
-              key={item}
+              key={item.id}
               className="overflow-hidden rounded-2xl border shadow-sm"
             >
               <div className="flex h-64 items-center justify-center bg-gray-100">
@@ -59,23 +60,23 @@ export default function Home() {
 
               <div className="p-4">
                 <h3 className="text-lg font-semibold">
-                  Товар {item}
+                  {item.name}
                 </h3>
 
                 <p className="text-gray-500">
-                  Размер: M
+                  Размер: {item.size}
                 </p>
 
                 <p className="text-gray-500">
-                  Бренд: Nike
+                Бренд: {item.brand}
                 </p>
 
                 <p className="mt-2 text-xl font-bold">
-                  900 ₴
+                  {item.price} ₴
                 </p>
 
                 <button
-                  onClick={() => addToCart(item)}
+                  onClick={() => addToCart(item.id)}
                   className="mt-4 w-full rounded-xl bg-teal-500 py-3 font-semibold text-white transition hover:bg-teal-600"
                 >
                   В корзину
