@@ -1,21 +1,26 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import Link from "next/link";
+import { Inter, Oswald } from "next/font/google";
 import Header from "../components/Header";
+import Footer from "../components/Footer";
+import { StoreProvider } from "../lib/store";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin", "cyrillic"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const oswald = Oswald({
+  variable: "--font-oswald",
+  subsets: ["latin", "cyrillic"],
+  weight: ["500", "600", "700"],
 });
 
 export const metadata: Metadata = {
-  title: "VIZIT",
+  title: {
+    default: "VIZIT — каждая вещь в единственном экземпляре",
+    template: "%s · VIZIT",
+  },
   description: "Каждая вещь — в единственном экземпляре.",
 };
 
@@ -25,14 +30,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="ru"
-      className="h-full antialiased"
-    >
-      <body className="min-h-full bg-white text-gray-900">
-        <Header />
-
-        {children}
+    <html lang="ru" className={`${inter.variable} ${oswald.variable} h-full antialiased`}>
+      <body className="flex min-h-full flex-col bg-white text-neutral-900">
+        <StoreProvider>
+          <Header />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </StoreProvider>
       </body>
     </html>
   );
